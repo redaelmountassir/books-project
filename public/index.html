@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Hello World</title>
+		<script>
+			// NOT BEST WAY!!!
+			async function populateBooks() {
+				const res = await fetch('/books');
+				const books = await res.json();
+				const booksList = document.querySelector('ul');
+				booksList.innerHTML = books.reduce(
+					(accumulator, book) =>
+						`${accumulator}<li>${book.title} was written by ${book.author} and published ${book.year}</li>`,
+					''
+				);
+			}
+			window.addEventListener('DOMContentLoaded', populateBooks);
+		</script>
+	</head>
+	<body>
+		<h1>Hello World</h1>
+		<p><a href="/new-book.html">Add Book</a></p>
+		<ul></ul>
+	</body>
+</html>
